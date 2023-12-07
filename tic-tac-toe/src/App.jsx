@@ -1,13 +1,25 @@
 import { useState } from "react";
-import Exercise1 from "./components/exercise/Exercise1";
+// import Exercise1 from "./components/exercise/Exercise1";
 import GameBoard from "./components/GameBoard";
+import Log from "./components/Log";
 import Player from "./components/Player";
 
 const App = () => {
+  const [gameTurns, setGameTurns] = useState([])
   const [activePlayer, setActivePlayer] = useState("X");
-  const onSelectHandler = () => {
+
+  const onSelectHandler = (rowIndex, colIndex) => {
     setActivePlayer(activePlayer === "X" ? "O" : "X");
+    setGameTurns((prevTurns) => {
+      let currentPlayer = "X";
+      if (prevTurns.length > 0 && prevTurns[0].player === "X") {
+        currentPlayer = "O";
+      }
+      const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+      return updatedTurns;
+    });
   };
+  
   return (
     <main>
       <div id="game-container">
@@ -29,6 +41,7 @@ const App = () => {
           activePlayerSymbol={activePlayer}
         />
       </div>
+      <Log />
     </main>
   );
 };
