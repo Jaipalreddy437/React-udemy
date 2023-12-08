@@ -19,7 +19,7 @@ const App = () => {
       return updatedTurns;
     });
   };
-  
+
   return (
     <main>
       <div id="game-container">

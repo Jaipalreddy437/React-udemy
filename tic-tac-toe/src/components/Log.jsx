@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Log = () => {
+const Log = ({onSendData}) => {
   return (
-    <ol id='log'></ol>
+    <ol id='log'>
+      {/* {onSendData}  */}
+      </ol>
   )
 }
 
