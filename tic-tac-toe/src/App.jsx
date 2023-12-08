@@ -4,18 +4,27 @@ import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
 import Player from "./components/Player";
 
+function derivedActivePlayer(gameTurns) {
+  let currentPlayer = "X";
+  if (gameTurns.length > 0 && gameTurns[0].player === "X") {
+    currentPlayer = "O";
+  }
+  return currentPlayer;
+}
 const App = () => {
-  const [gameTurns, setGameTurns] = useState([])
-  const [activePlayer, setActivePlayer] = useState("X");
+  const [gameTurns, setGameTurns] = useState([]);
+  // const [activePlayer, setActivePlayer] = useState("X");
+
+  const activePlayer = derivedActivePlayer(gameTurns);
 
   const onSelectHandler = (rowIndex, colIndex) => {
-    setActivePlayer(activePlayer === "X" ? "O" : "X");
+    // setActivePlayer(activePlayer === "X" ? "O" : "X");
     setGameTurns((prevTurns) => {
-      let currentPlayer = "X";
-      if (prevTurns.length > 0 && prevTurns[0].player === "X") {
-        currentPlayer = "O";
-      }
-      const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+      const currentPlayer = derivedActivePlayer(prevTurns);
+      const updatedTurns = [
+        { square: { row: rowIndex, col: colIndex }, player: currentPlayer },
+        ...prevTurns,
+      ];
       return updatedTurns;
     });
   };
@@ -36,12 +45,9 @@ const App = () => {
           />
           {/* <Exercise1 /> */}
         </ol>
-        <GameBoard
-          onSelectSquare={onSelectHandler}
-          activePlayerSymbol={activePlayer}
-        />
+        <GameBoard onSelectSquare={onSelectHandler} turns={gameTurns} />
       </div>
-      <Log />
+      <Log turns={gameTurns} />
     </main>
   );
 };
