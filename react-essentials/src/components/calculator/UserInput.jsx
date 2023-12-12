@@ -6,12 +6,12 @@ const USerInput = ({ userInput, onChange }) => {
     <section id="user-input">
       <div className="input-group">
         <p>
-          <label htmlFor="invetment">Initial Investment</label>
+          <label htmlFor="investment">Initial Investment</label>
           <input
-            value={userInput.inintialInvestment}
+            value={userInput.initialInvestment}
             type="number"
             required
-            onChange={(e) => onChange("inintialInvestment", e.target.value)}
+            onChange={(e) => onChange("initialInvestment", e.target.value)}
           />
         </p>
         <p>
