@@ -13,7 +13,7 @@ export default function AuthInputs() {
     }
   }
 
-  function handleLogin() {
+  function handleLogin() {ha
     setSubmitted(true);
   }
 
@@ -24,19 +24,18 @@ export default function AuthInputs() {
     <div id="auth-inputs">
       <div className="controls">
         <p>
-          <label className={`label ${emailNotValid ? "invalid" : ""}`}>Email</label>
+          <label>Email</label>
           <input
             type="email"
             className={emailNotValid ? 'invalid' : undefined}
-            // style={{backgroundColor: emailNotValid ? "#fed2d2" : "#d1d5db"}}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
         </p>
         <p>
-          <label className={`label ${emailNotValid && passwordNotValid ? "invalid" : ""}`}>Password</label>
+          <label>Password</label>
           <input
             type="password"
-            className={emailNotValid && passwordNotValid ? 'invalid' : undefined}
+            className={passwordNotValid ? 'invalid' : undefined}
             onChange={(event) =>
               handleInputChange('password', event.target.value)
             }
