@@ -13,7 +13,7 @@ export default function AuthInputs() {
     }
   }
 
-  function handleLogin() {ha
+  function handleLogin() {
     setSubmitted(true);
   }
 
